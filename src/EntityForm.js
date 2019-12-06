@@ -7,7 +7,7 @@ let EntityItem = (props) => {
                 Type: {props.entityType}
                 Value: {props.entityValue}
             </span>
-            <button>remove</button>
+            <button onClick={props.deleteAction}>remove</button>
         </div>
     )
 }
@@ -29,6 +29,13 @@ class EntityForm extends React.Component {
         newState.selectedType = "";
         this.setState(newState);
     }
+
+    deleteItem(idx){
+        let newState = {...this.state};
+        newState.entities.splice(idx, 1);
+        this.setState(newState); 
+    }
+
     setEntityType(event) {
         this.setState({selectedType: event.target.value});
     }
@@ -39,7 +46,10 @@ class EntityForm extends React.Component {
 
     render() {
         let enteredItems = this.state.entities.map((item, idx) => {
-            return <EntityItem key={idx} entityValue={item.value} entityType={item.type}></EntityItem>;
+            return <EntityItem key={idx} entityValue={item.value} entityType={item.type} deleteAction={(event) => {
+                event.preventDefault();
+                this.deleteItem(idx);
+            }}></EntityItem>;
         })
         return (
 
