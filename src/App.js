@@ -3,14 +3,29 @@ import Header from "./Header";
 import EntityForm from "./EntityForm";
 import Result from "./Results";
 
-function App() {
+class App extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            classification: []
+        }
+    }
+    classify(entities) {
+        console.log(entities);
+        this.setState({
+            classification: ["sport", "Politik"]
+        })
+    }
+
+    render () {
     return (
         <div>
             <Header></Header>
-            <EntityForm></EntityForm>
-            <Result></Result>
+            <EntityForm classify={(items) => {this.classify(items)}}></EntityForm>
+            <Result classification={this.state.classification}></Result>
         </div>
     )
+    }
 } 
 
 export default App;

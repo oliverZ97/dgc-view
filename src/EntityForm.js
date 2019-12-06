@@ -72,6 +72,10 @@ class EntityForm extends React.Component {
                         this.addEntityItem();
                     }}>add</button>
                 </form>
+                <button onClick={(event) => {
+                    event.preventDefault();
+                    this.props.classify(this.state.entities)}
+                    }>Classify!</button>
                 <hr></hr>
                 {enteredItems}
             </div>
