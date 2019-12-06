@@ -1,9 +1,14 @@
 import React from "react";
+import Header from "./Header";
+import EntityForm from "./EntityForm";
+import Result from "./Results";
 
 function App() {
     return (
         <div>
-            <h1>Test</h1>
+            <Header></Header>
+            <EntityForm></EntityForm>
+            <Result></Result>
         </div>
     )
 } 
